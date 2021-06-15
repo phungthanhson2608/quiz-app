@@ -1,0 +1,33 @@
+.quiz-form {
+    max-width: 800px;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+.contentStyle{
+    background-color: rgb(0, 255, 64);
+}
+.previous{
+    float : left
+}
+.next{
+    float: right
+}
+
+.site-card-border-less-wrapper {
+    height: 450px;
+    padding: 50px;
+    background: white;
+  }
+
+.answer-button{
+    padding: 10px;
+}
+
+.progress{
+    width: 160px;
+    display: flex;
+    margin: auto;
+}

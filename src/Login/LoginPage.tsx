@@ -1,16 +1,35 @@
-import { Row, Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './LoginPage.css';
-import { DataService } from '../DataService/DataService';
+import { useHistory } from "react-router-dom";
+import { FC, useEffect } from 'react';
 
-export const LoginPage = () => {
-    const onFinish = (values: any) => {
-        console.log('Received values of form: ', values);
-        getData();
-      };
-    const getData = () =>{
-       {DataService.get()}
+type Props ={
+  changeShowButton : any
+}
+
+export const LoginPage:FC<Props> = (props) => {
+  const history = useHistory()
+
+  useEffect(() => {
+    if (localStorage.getItem('user') != null) {
+      history.push('/quiz');
+      props.changeShowButton(true);
+    }else{
+      props.changeShowButton(false);
     }
+    
+  })
+
+  const onFinish = (values: any) => {
+    localStorage.setItem('user', values.username);
+    history.push('/quiz');
+    props.changeShowButton(true);
+    notification.success({
+      message: 'Login successful',
+      description: 'Welcome ' +  values.username,
+    });
+  };
 
   return (
     <Form

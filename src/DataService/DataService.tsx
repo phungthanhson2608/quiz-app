@@ -1,11 +1,24 @@
 
 export class DataService {
-     static url = 'https://react14-contest-easy-quiz-app.herokuapp.com/quiz'
-     static get = () =>{
-        fetch(DataService.url).then(res => res.json())
-        .then((rows) =>{
-            console.log(rows);
-        })
+     static get = async () =>{
+        const url = 'https://react14-contest-easy-quiz-app.herokuapp.com/quiz'
+        const res = await fetch(url);
+        const data = await res.json();
+        return data.result;
     }
+
+     static postAnswer = async (listAnswer :any ) =>{
+        const url = 'https://react14-contest-easy-quiz-app.herokuapp.com/quiz/answer'
+        const res = await fetch(url,{
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({listAnswer})
+        });
+        const data = await res.json();
+        return data;
+     }
 
 }
