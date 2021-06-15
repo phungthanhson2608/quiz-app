@@ -12,6 +12,7 @@ const App:FC = () => {
   const changeShowButton = (isShow:boolean) =>{
     setShowLogOut(isShow);
   }
+  const isLogin:boolean = localStorage.getItem('user') != null
   return (
     <Router>
       <PageHeader
@@ -23,7 +24,7 @@ const App:FC = () => {
       />
       <Switch>
         <Route path="/quiz">
-          <QuizPage />
+          {isLogin ? <QuizPage /> : <Redirect to="/login" />}
         </Route>
         <Route path="/login">
           <LoginPage changeShowButton={changeShowButton} />
