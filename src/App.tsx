@@ -8,7 +8,7 @@ import { LogOutButton } from './Login/LogOutButton';
 
 
 const App:FC = () => {
-  const [showLogOut, setShowLogOut] = useState<boolean>(false);
+  const [showLogOut, setShowLogOut] = useState<boolean>(true);
   const changeShowButton = (isShow:boolean) =>{
     setShowLogOut(isShow);
   }
